@@ -47,6 +47,12 @@ describe FlattenIntegerArray do
         deeply_array_non_integers = [1,2,3, [1,2, 3, [1,2,3, ['a', '1'], 4], 5], 4, 5]
         expect{FlattenIntegerArray.flatten(deeply_array_non_integers)}.to raise_exception(FlattenIntegerArray::CustomErrors::InputValidationError)
       end
+
+      it "should inform the consumer of invalid input when providing an empty array" do
+        empty_array = []
+        expect{FlattenIntegerArray.flatten(empty_array)}.to raise_exception(FlattenIntegerArray::CustomErrors::InputValidationError)
+      end
+
     end
   end
 end
