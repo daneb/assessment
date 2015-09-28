@@ -29,7 +29,7 @@ module FlattenIntegerArray
   def self.iterate_and_flatten_array(input_array, result = Array.new)
     return result if input_array.length == 0
     length = input_array.length - 1
-    input_array[0].is_a?(Array) ? input_array[0].select { |x| result << x } :  result << input_array[0] 
+    input_array[0].is_a?(Array) ? iterate_and_flatten_array(input_array[0], result) :  result << input_array[0] 
     iterate_and_flatten_array(input_array.drop(1), result)
   end
 end
