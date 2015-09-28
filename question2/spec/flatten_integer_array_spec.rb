@@ -53,6 +53,11 @@ describe FlattenIntegerArray do
         expect{FlattenIntegerArray.flatten(empty_array)}.to raise_exception(FlattenIntegerArray::CustomErrors::InputValidationError)
       end
 
+      it "should inform the consumer of invalid input when the input is not an array" do
+        fake_array = 1
+        expect{FlattenIntegerArray.flatten(fake_array)}.to raise_exception(FlattenIntegerArray::CustomErrors::InputValidationError)
+      end
+
     end
   end
 end
