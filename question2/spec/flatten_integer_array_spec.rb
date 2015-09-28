@@ -34,8 +34,13 @@ describe FlattenIntegerArray do
 
     describe "Deal with Inconsistencies in user input" do
       it "should inform the consumer of invalid input when providing a flat array of non-integers" do
-        flat_array_non_integers = ['i', 1, 'n', 't', 'e', 'r', 'c', 'o', 'm']
+        flat_array_non_integers = [1,2,3,"hello"]
         expect{FlattenIntegerArray.flatten(flat_array_non_integers)}.to raise_exception(FlattenIntegerArray::CustomErrors::InputValidationError)
+      end
+
+      it "should inform the consumer of invalid input when providing a shalow nested array of non-integers" do
+        shallow_array_non_integers = [1,2,3, ['1', 'e', 'l'], 4, 5, 6]
+        expect{FlattenIntegerArray.flatten(shallow_array_non_integers)}.to raise_exception(FlattenIntegerArray::CustomErrors::InputValidationError)
       end
     end
   end
