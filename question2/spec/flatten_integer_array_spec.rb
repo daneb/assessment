@@ -58,6 +58,12 @@ describe FlattenIntegerArray do
         expect{FlattenIntegerArray.flatten(fake_array)}.to raise_exception(FlattenIntegerArray::CustomErrors::InputValidationError)
       end
 
+      it "should inform the consumer of invalid input when the input contains other types of numerics" do
+        bad_numbers_array = [1, 2, 3, [1,2, 3123123.23,12.2,32323131313123123123123123123431452353434]]
+        expect{FlattenIntegerArray.flatten(bad_numbers_array)}.to raise_exception(FlattenIntegerArray::CustomErrors::InputValidationError)
+      end
+
+
     end
   end
 end
