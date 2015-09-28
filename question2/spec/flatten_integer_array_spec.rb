@@ -22,9 +22,14 @@ describe FlattenIntegerArray do
       expect(FlattenIntegerArray.flatten(shallow_with_empty_array)).to eq([1,2,3,4])
     end
 
-    it "should return a flat array given a deeply nested arbitrarily nested array of integers" do
+    it "should return a flat array given a deeply nested array of integers" do
       deeply_nested_array = [1,2,3,[1,2,3,[1,2,3,[1,2,3],4],4],4]
       expect(FlattenIntegerArray.flatten(deeply_nested_array)).to eq([1,2,3,1,2,3,1,2,3,1,2,3,4,4,4])
+    end
+
+    it "should return a flat array of arbitrarily nested array of integers without removing duplicates" do
+      array = [1,2,3,4,1,2,3,4,[1,2,3,4]]
+      expect(FlattenIntegerArray.flatten(array)).to eq([1,2,3,4,1,2,3,4,1,2,3,4])
     end
   end
 end
