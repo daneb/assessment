@@ -31,5 +31,12 @@ describe FlattenIntegerArray do
       array = [1,2,3,4,1,2,3,4,[1,2,3,4]]
       expect(FlattenIntegerArray.flatten(array)).to eq([1,2,3,4,1,2,3,4,1,2,3,4])
     end
+
+    describe "Deal with Inconsistencies in user input" do
+      it "should inform the consumer of invalid input when providing a flat array of non-integers" do
+        flat_array_non_integers = ['i', 1, 'n', 't', 'e', 'r', 'c', 'o', 'm']
+        expect{FlattenIntegerArray.flatten(flat_array_non_integers)}.to raise_exception(FlattenIntegerArray::CustomErrors::InputValidationError)
+      end
+    end
   end
 end
