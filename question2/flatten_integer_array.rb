@@ -6,7 +6,7 @@ module FlattenIntegerArray
   def self.flatten(input_array)
     result_array = []
     return input_array if flat_array?(input_array)
-    raise CustomErrors::InputValidationError, "This is not an arbitrarily nested array of integers" unless valid_input?(input_array)
+    valid_input?(input_array)
     result = iterate_and_flatten_array(input_array, [])
     result
   end
@@ -14,21 +14,25 @@ module FlattenIntegerArray
   private
   def self.flat_array?(check_array)
     return false unless check_array.is_a?(Array)
-    return false unless all_integers?(check_array)
+    return false unless only_integers_no_array?(check_array)
     true
   end
 
-  def self.all_integers?(check_array)
+  def self.only_integers_no_array?(check_array)
     check_array.all? {|i| i.is_a?(Integer) }
   end
 
+  def self.all_integers?(check_array)
+    check_array.all? {|i| i.is_a?(Array) ? all_integers?(i) : i.is_a?(Integer) }
+  end
+
   def self.valid_input?(input_array)
-    true
+     notification = "This is not an arbitrarily nested array of integers"
+     raise FlattenIntegerArray::CustomErrors::InputValidationError, notification unless all_integers?(input_array)
   end
 
   def self.iterate_and_flatten_array(input_array, result = Array.new)
     return result if input_array.length == 0
-    length = input_array.length - 1
     input_array[0].is_a?(Array) ? iterate_and_flatten_array(input_array[0], result) :  result << input_array[0] 
     iterate_and_flatten_array(input_array.drop(1), result)
   end
