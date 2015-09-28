@@ -1,4 +1,5 @@
 require 'spec_helper.rb'
+require 'benchmark'
 
 describe FlattenIntegerArray do
   describe "Flatten an arbitrarily nested array of integers" do
@@ -62,8 +63,20 @@ describe FlattenIntegerArray do
         bad_numbers_array = [1, 2, 3, [1,2, 3123123.23,12.2,32323131313123123123123123123431452353434]]
         expect{FlattenIntegerArray.flatten(bad_numbers_array)}.to raise_exception(FlattenIntegerArray::CustomErrors::InputValidationError)
       end
+    end
 
-
+    describe "to be performant when flattening nested arrays of integers" do
+      it "should flatten a larged nested array of integers in a reasonable time" do
+        # Produces a 1.7MB and processes it in under a second
+        big_array = []
+        result = []
+        (1..35).step { |x|
+        (1..x).step { |y| y.times { result <<  rand(0..60000) }  }
+        big_array << result
+        }
+        time = Benchmark.measure{FlattenIntegerArray.flatten(big_array)}
+        expect(time.real < 1)
+      end
     end
   end
 end
