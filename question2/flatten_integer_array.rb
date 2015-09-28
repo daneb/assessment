@@ -7,7 +7,7 @@ module FlattenIntegerArray
     result_array = []
     return input_array if flat_array?(input_array)
     raise CustomErrors::InputValidationError, "This is not an arbitrarily nested array of integers" unless valid_input?(input_array)
-    result = iterate_and_flatten_array(input_array)
+    result = iterate_and_flatten_array(input_array, [])
     result
   end
 
@@ -26,7 +26,10 @@ module FlattenIntegerArray
     true
   end
 
-  def self.iterate_and_flatten_array(input_array)
-    [1, 2, 3, 1, 2, 3]
+  def self.iterate_and_flatten_array(input_array, result = Array.new)
+    return result if input_array.length == 0
+    length = input_array.length - 1
+    input_array[0].is_a?(Array) ? input_array[0].select { |x| result << x } :  result << input_array[0] 
+    iterate_and_flatten_array(input_array.drop(1), result)
   end
 end
