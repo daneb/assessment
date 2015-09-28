@@ -16,5 +16,10 @@ describe FlattenIntegerArray do
       shallow_array = [1,2,3,[1,2,3]]
       expect(FlattenIntegerArray.flatten(shallow_array)).to eq([1,2,3,1,2,3])
     end
+
+    it "should return a flat array given a shallow arbitrarily nested array of integers with an empty array interspersed" do
+      shallow_with_empty_array = [1,2,3,[], 4]
+      expect(FlattenIntegerArray.flatten(shallow_with_empty_array)).to eq([1,2,3,4])
+    end
   end
 end
