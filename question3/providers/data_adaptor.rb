@@ -7,7 +7,7 @@ class DataAdaptor
   def initialize
     byebug
     @config = YAML.load_file("config/config.yml")
-    @datasource = Provider.class_from_string("Adaptor::JSONTextFile")
+    @datasource = Provider.class_from_string(@config["nearby"]["datasource"], { textfile: @config["nearby"]["textfile"] })
   end
 
   def retrieve_customers
