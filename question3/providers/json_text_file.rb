@@ -1,5 +1,6 @@
 require 'json'
 require './helpers/json_validation'
+require './helpers/status_envelope'
 
 module Adaptor
   class JSONTextFile
@@ -16,8 +17,8 @@ module Adaptor
     private
     def safe_retrieval_of_customers
       file_contents = read_file
-      byebug
-      json_validator = JSONValidation.new(file_contents)
+      return Helpers::StatusEnvelope.new({}, "Datasource empty") if file_contents.empty?
+      json_validator = Helpers::JSONValidation.new(file_contents)
       return JSON.parse(file_contents) if json_validator.valid_json?
       JSON.parse(json_validator.reformat_to_remove_multiple_json_root)
     end
