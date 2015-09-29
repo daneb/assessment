@@ -1,0 +1,10 @@
+GEM
+  remote: https://rubygems.org/
+  specs:
+    haversine (0.3.0)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  haversine
