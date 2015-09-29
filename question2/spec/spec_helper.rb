@@ -1,4 +1,3 @@
-puts Dir.pwd
 require './flatten_integer_array'
 require './custom_errors'
 

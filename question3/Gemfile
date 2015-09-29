@@ -2,4 +2,4 @@
 source "https://rubygems.org"
 
 # gem "rails"
-gem 'haversine'
+gem 'haversine' # used for prototype and confirmation of results, also tested again wolfram
