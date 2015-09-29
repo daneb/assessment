@@ -5,7 +5,7 @@ describe NearbyCustomers do
     it "should retrieve the data from the datasource" do
       datasource = DataAdaptor.new
       result = datasource.retrieve_customers
-      expect(result).to eq nil
+      expect(result.length).to be > 0
     end
   end
 end

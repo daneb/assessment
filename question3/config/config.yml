@@ -1,0 +1,4 @@
+---
+nearby:
+ datasource: Adaptor::JSONTextFile
+ textfile: datasource/gistfile1.txt
