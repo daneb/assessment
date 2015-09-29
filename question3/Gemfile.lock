@@ -1,10 +1,12 @@
 GEM
   remote: https://rubygems.org/
   specs:
+    byebug (6.0.2)
     haversine (0.3.0)
 
 PLATFORMS
   ruby
 
 DEPENDENCIES
+  byebug
   haversine
