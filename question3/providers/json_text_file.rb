@@ -1,6 +1,6 @@
 require 'json'
 require './helpers/json_validation'
-require './helpers/status_envelope'
+require './helpers/data_objects'
 
 module Adaptor
   class JSONTextFile
