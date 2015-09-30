@@ -1,7 +1,7 @@
 # Assessment
 
-To Run Tests:
+### To Run Tests:
 
-cd into question2 or question3
-bundle install
-rspec 
+- cd into question2 or question3
+- bundle install
+- rspec 
